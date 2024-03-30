@@ -1,4 +1,4 @@
-import { Button, Box, } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Counter from './Counter';
 import Navbar from './Navbar';
@@ -66,6 +66,7 @@ const Counters = () => {
     const allCounters = counter.map((count) => {
         return <Counter key={count.id}
             value={count.value}
+            disabled={count.value === 0 ? 'disabled' : ''}
             onIncrement={() => increment(count.id)}
             onDecrement={() => decrement(count.id)}
             onDelete={() => handleDelete(count.id)}
@@ -79,7 +80,7 @@ const Counters = () => {
         <>
             <Navbar totalCounters={totalCount} />
             <Box ml='5' mt='5'>
-                <Button colorScheme='green' onClick={handleReset} >Reset</Button>
+                <button className='btn btn-success fw-bold' onClick={handleReset} >Reset</button>
                 {allCounters}
             </Box>
         </>
